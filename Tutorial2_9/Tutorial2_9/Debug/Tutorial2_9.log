@@ -1,10 +1,30 @@
-﻿  TutorialApplication.cpp
+﻿  BaseApplication.cpp
   Unknown compiler version - please run the configure tests and report the results
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(75,67): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(76,68): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(90,47): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(91,48): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(193,59): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(211,40): warning C4018: '>=': signed/unsigned mismatch
-C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(228,52): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
-  Tutorial2_9.vcxproj -> C:\classENV10\Build9\bin\debug\Tutorial2_9.exe
+  TutorialApplication.cpp
+  Unknown compiler version - please run the configure tests and report the results
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(52,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(52,73): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(62,61): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(63,68): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(68,84): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(69,91): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(75,59): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(75,81): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(76,65): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(76,87): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(84,59): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(84,81): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(85,65): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(85,87): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(149,67): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(150,68): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(164,47): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(165,48): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(301,59): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(319,40): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(336,52): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
+  enemy.cpp
+  Unknown compiler version - please run the configure tests and report the results
+  path.cpp
+c1xx : fatal error C1083: Cannot open source file: 'path.cpp': No such file or directory
+  Generating Code...

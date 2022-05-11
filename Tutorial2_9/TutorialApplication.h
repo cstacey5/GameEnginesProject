@@ -50,6 +50,55 @@ private:
     void createPath();
     void spawnEnemy();
     void createPathVisualizer(Ogre::Vector3 pos, bool rotation);
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    CEGUI::OgreRenderer* mRenderer;
+    Ogre::RaySceneQuery* mRaySceneQuery;
+    Ogre::Vector3 oldpos;
+    Ogre::String selectedObject;
+    int entityCount;
+
+    CEGUI::Window* playerMoneyDisplay;
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // OIS::KeyListener
+    virtual bool keyPressed(const OIS::KeyEvent& arg);
+    virtual bool keyReleased(const OIS::KeyEvent& arg);
+    // OIS::MouseListener
+    virtual bool mouseMoved(const OIS::MouseEvent& arg);
+    virtual bool mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
+    virtual bool mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
+
+    bool quit(const CEGUI::EventArgs& e);
+
+    Ogre::MovableObject* getNode(float mouseScreenX, float mouseScreenY);
+    Ogre::SceneNode* currentObjectNode;
+
+    bool createTower1();
+    bool createTower2();
+    bool deleteTower();
+
+    const int tower1Cost_ = 50;
+    const int tower2Cost_ = 75;
+    int towerType;
+    bool allowPlacing;
+
+    CEGUI::Event::Connection towerButton1Connection, towerButton2Connection;
+    CEGUI::PushButton* towerButton1, * towerButton2;
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // Player money management
+    // This can probably be added to the player class
+    unsigned long long playerMoney;
+    void addMoney(unsigned long long amt) { playerMoney += amt; }
+    void subtractMoney(unsigned long long amt) {
+        unsigned long long temp = playerMoney;
+        playerMoney -= amt;
+        if (playerMoney > temp) playerMoney = 0;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////
 };
 
 //class Enemy {

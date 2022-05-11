@@ -27,6 +27,14 @@ http://www.ogre3d.org/wiki/
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
 
+// GUI includes
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
+
+#include <CEGUI/System.h>
+#include <CEGUI/Logger.h>
+#include <CEGUI/SchemeManager.h>
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
 #  include <OIS/OISEvents.h>
 #  include <OIS/OISInputManager.h>
