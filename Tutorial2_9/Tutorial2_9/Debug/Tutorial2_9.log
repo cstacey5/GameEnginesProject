@@ -1,0 +1,10 @@
+﻿  TutorialApplication.cpp
+  Unknown compiler version - please run the configure tests and report the results
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(75,67): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(76,68): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(90,47): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(91,48): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(193,59): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(211,40): warning C4018: '>=': signed/unsigned mismatch
+C:\classENV10\Projects\Tutorials\Tutorial2_9\TutorialApplication.cpp(228,52): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
+  Tutorial2_9.vcxproj -> C:\classENV10\Build9\bin\debug\Tutorial2_9.exe
