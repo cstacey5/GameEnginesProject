@@ -201,7 +201,6 @@ void TutorialApplication::createFrameListener() {
 }
 
 bool TutorialApplication::frameRenderingQueued(const Ogre::FrameEvent& fe) {
-    bool ret = BaseApplication::frameRenderingQueued(fe);
 
     playerMoneyDisplay->setText("Current Money:\n\n$ " + std::to_string(playerMoney));
 
@@ -243,7 +242,7 @@ bool TutorialApplication::frameRenderingQueued(const Ogre::FrameEvent& fe) {
             enemyVector.erase(it);
         }
     }
-    return ret;
+    return true;
 }
 
 

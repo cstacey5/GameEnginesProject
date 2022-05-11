@@ -1,6 +1,4 @@
-﻿  BaseApplication.cpp
-  Unknown compiler version - please run the configure tests and report the results
-  TutorialApplication.cpp
+﻿  TutorialApplication.cpp
   Unknown compiler version - please run the configure tests and report the results
 C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(52,51): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(52,73): warning C4305: 'argument': truncation from 'double' to 'float'
@@ -20,11 +18,7 @@ C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEngin
 C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(150,68): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(164,47): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
 C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(165,48): warning C4305: 'argument': truncation from 'double' to 'Ogre::Real'
-C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(301,59): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
-C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(319,40): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(336,52): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
-  enemy.cpp
-  Unknown compiler version - please run the configure tests and report the results
-  path.cpp
-c1xx : fatal error C1083: Cannot open source file: 'path.cpp': No such file or directory
-  Generating Code...
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(300,59): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(318,40): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\jjgra\OneDrive - Kent State University\Desktop\Homework Repos\GameEnginesProject\Tutorial2_9\TutorialApplication.cpp(335,52): warning C4305: 'argument': truncation from 'double' to 'const Ogre::Real'
+  Tutorial2_9.vcxproj -> C:\classENV10\Build9\bin\debug\Tutorial2_9.exe
