@@ -1,0 +1,8 @@
+<Imageset autoScaled="vertical" imagefile="buttons.png" name="Buttons" nativeHorzRes="1920" nativeVertRes="1550" version="2">
+	<Image height="1250" name="Tower1Normal" width="500" xPos="12" yPos="6" />
+	<Image height="1250" name="Tower1Hover" width="500" xPos="526" yPos="4" />
+	<Image height="1250" name="Tower1Pressed" width="500" xPos="1038" yPos="0" />
+	<Image height="1250" name="Tower2Normal" width="500" xPos="20" yPos="1276" />
+	<Image height="1250" name="Tower2Hover" width="500" xPos="552" yPos="1270" />
+	<Image height="1250" name="Tower2Pressed" width="500" xPos="1068" yPos="1264" />
+</Imageset>
