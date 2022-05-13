@@ -12,29 +12,34 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\BaseApplication.cpp" />
+    <ClCompile Include="..\enemy.cpp" />
+    <ClCompile Include="..\Tower.cpp" />
+    <ClCompile Include="..\Trigger.cpp" />
     <ClCompile Include="..\TutorialApplication.cpp" />
-    <ClCompile Include="enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\BaseApplication.h" />
+    <ClInclude Include="..\enemy.h" />
+    <ClInclude Include="..\Tower.h" />
+    <ClInclude Include="..\Trigger.h" />
     <ClInclude Include="..\TutorialApplication.h" />
-    <ClInclude Include="enemy.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC3B6E78-CC94-4C13-8CBE-3D08C0C5EA86}</ProjectGuid>
     <RootNamespace>Tutorial2_9</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>

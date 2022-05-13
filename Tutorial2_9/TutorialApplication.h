@@ -22,7 +22,8 @@ http://www.ogre3d.org/wiki/
 #include <string>
 #include <vector>
 #include <ctime>
-#include "Tutorial2_9\enemy.h"
+#include "enemy.h"
+#include "Tower.h"
 //---------------------------------------------------------------------------
 
 class TutorialApplication : public BaseApplication
@@ -39,7 +40,7 @@ public:
     std::vector<bool> defaultPathRotate;
     std::vector<Ogre::SceneNode*> createdPath;
     std::vector<Ogre::Degree> createdPathTurns;
-    std::vector<Enemy> enemyVector;
+    std::vector<Enemy>* enemyVector  = new std::vector<Enemy>;
     
 protected:
     virtual void createScene(void);
@@ -59,6 +60,10 @@ private:
     int entityCount;
 
     CEGUI::Window* playerMoneyDisplay;
+    CEGUI::Window* playerHealthDisplay;
+    CEGUI::Window* youLoseGui;
+
+    std::vector<Tower*> towers_;
     ////////////////////////////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -74,6 +79,7 @@ private:
 
     Ogre::MovableObject* getNode(float mouseScreenX, float mouseScreenY);
     Ogre::SceneNode* currentObjectNode;
+    Tower* newTower = nullptr;
 
     bool createTower1();
     bool createTower2();
@@ -82,48 +88,30 @@ private:
     const int tower1Cost_ = 50;
     const int tower2Cost_ = 75;
     int towerType;
-    bool allowPlacing;
+    bool allowPlacing = false;
 
     CEGUI::Event::Connection towerButton1Connection, towerButton2Connection;
-    CEGUI::PushButton* towerButton1, * towerButton2;
+    //CEGUI::PushButton* towerButton1, * towerButton2;
+    CEGUI::Window* towerButton1, * towerButton2;
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // Player money management
-    // This can probably be added to the player class
-    unsigned long long playerMoney;
+    unsigned long long playerMoney = 150;
     void addMoney(unsigned long long amt) { playerMoney += amt; }
     void subtractMoney(unsigned long long amt) {
         unsigned long long temp = playerMoney;
         playerMoney -= amt;
         if (playerMoney > temp) playerMoney = 0;
     }
-    ////////////////////////////////////////////////////////////////////////////////////////
+
+    int playerHealth = 100;
+    void subtractHealth(int amt) {
+        playerHealth -= amt;
+        if (playerHealth <= 0) {
+            playerHealth = 0;
+            youLoseGui->setVisible(true);
+        }
+    }
 };
-
-//class Enemy {
-//public:
-//    void takeDamage();
-//    void getSceneNode();
-//private:
-//    int enemyHealth = 100;
-//    Ogre::SceneNode* enemyNode;
-//};
-
-//class Path
-//{
-//public:
-//    Path() {
-//        createPath();
-//    };
-//    void handlePath();
-//    int pathNodeI = 0;
-//private: 
-//    Ogre::SceneNode* createPathNode(Ogre::Vector3 pos);
-//    void createPath();
-//    std::vector<Ogre::SceneNode*> createdPath;
-//    std::vector<Ogre::Degree> createdPathTurns;
-//};
 
 //---------------------------------------------------------------------------
 

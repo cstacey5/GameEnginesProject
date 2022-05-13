@@ -21,7 +21,13 @@
     <ClCompile Include="..\TutorialApplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="enemy.cpp">
+    <ClCompile Include="..\Tower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Trigger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +38,13 @@
     <ClInclude Include="..\TutorialApplication.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="enemy.h">
+    <ClInclude Include="..\Tower.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Trigger.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\enemy.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

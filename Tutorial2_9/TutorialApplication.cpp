@@ -16,7 +16,7 @@ http://www.ogre3d.org/wiki/
 -----------------------------------------------------------------------------
 */
 #include "TutorialApplication.h"
-
+#include <iostream>
 //---------------------------------------------------------------------------
 TutorialApplication::TutorialApplication(void)
 {
@@ -30,13 +30,19 @@ TutorialApplication::~TutorialApplication(void)
 //---------------------------------------------------------------------------
 void TutorialApplication::createScene(void)
 {
+    //set up console
+    /*AllocConsole();
+    FILE* fDummy;
+    freopen_s(&fDummy, "CONOUT$", "w", stdout);
+    std::cout.clear();*/
+
     ////////////////////////////////////////////////////////////////////////////////////////
     // GUI Stuffs
     mRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
 
     CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
     CEGUI::ImageManager::getSingleton().loadImageset("TaharezLook.imageset");
-    CEGUI::ImageManager::getSingleton().loadImageset("Buttons.imageset");
+    //CEGUI::ImageManager::getSingleton().loadImageset("Buttons.imageset");
     CEGUI::Font::setDefaultResourceGroup("Fonts");
     CEGUI::Scheme::setDefaultResourceGroup("Schemes");
     CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
@@ -56,6 +62,19 @@ void TutorialApplication::createScene(void)
 
     quit->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&TutorialApplication::quit, this));
 
+    // YOU LOSE GUI
+    youLoseGui = wmgr.createWindow("TaharezLook/StaticText", "TDGame/PlayerMoneyDisplay");
+    youLoseGui->setSize(CEGUI::USize(CEGUI::UDim(1, 0), CEGUI::UDim(1, 0)));
+    
+    sheet->addChild(youLoseGui);
+    CEGUI::Window* youLoseTxt = wmgr.createWindow("TaharezLook/StaticText", "TDGame/PlayerMoneyDisplay");
+    youLoseTxt->setPosition(CEGUI::UVector2(CEGUI::UDim(0.4, 0), CEGUI::UDim(0.4, 0)));
+    youLoseTxt->setProperty("FrameEnabled", "False");
+    youLoseTxt->setText("YOU LOSE");
+    youLoseGui->addChild(youLoseTxt);
+
+    youLoseGui->setVisible(false);
+
     // TOWER SELECTION GUI
 
     CEGUI::FrameWindow* selectionPanel = static_cast<CEGUI::FrameWindow*>(wmgr.createWindow("TaharezLook/FrameWindow", "TDGame/TowerSelectionPane"));
@@ -65,27 +84,30 @@ void TutorialApplication::createScene(void)
     selectionPanel->setVisible(true);
 
     playerMoneyDisplay = wmgr.createWindow("TaharezLook/StaticText", "TDGame/PlayerMoneyDisplay");
-    playerMoneyDisplay->setSize(CEGUI::USize(CEGUI::UDim(1, 0), CEGUI::UDim(0.20, 0)));
+    playerMoneyDisplay->setSize(CEGUI::USize(CEGUI::UDim(1, 0), CEGUI::UDim(0.10, 0)));
     playerMoneyDisplay->setPosition(CEGUI::UVector2(CEGUI::UDim(0, 0), CEGUI::UDim(0.05, 0)));
     playerMoneyDisplay->setText("   Current Money:\n    $ 0");
     playerMoneyDisplay->setProperty("HorzFormatting", "WordWrapCentred");
     selectionPanel->addChild(playerMoneyDisplay);
 
-    towerButton1 = static_cast<CEGUI::PushButton*>(wmgr.createWindow("TaharezLook/ImageButton", "tower1Button"));
-    towerButton1->setSize(CEGUI::USize(CEGUI::UDim(0.80, 0), CEGUI::UDim(0.30, 0)));
-    towerButton1->setPosition(CEGUI::UVector2(CEGUI::UDim(0.1, 0), CEGUI::UDim(0.30, 0)));
-    towerButton1->setProperty("NormalImage", "Buttons/Tower1Normal");
-    towerButton1->setProperty("HoverImage", "Buttons/Tower1Hover");
-    towerButton1->setProperty("PushedImage", "Buttons/Tower1Pressed");
+    playerHealthDisplay = wmgr.createWindow("TaharezLook/StaticText", "TDGame/PlayerHealthDisplay");
+    playerHealthDisplay->setSize(CEGUI::USize(CEGUI::UDim(1, 0), CEGUI::UDim(0.10, 0)));
+    playerHealthDisplay->setPosition(CEGUI::UVector2(CEGUI::UDim(0, 0), CEGUI::UDim(0.15, 10)));
+    playerHealthDisplay->setText("   Current Money:\n    $ 0");
+    playerHealthDisplay->setProperty("HorzFormatting", "WordWrapCentred");
+    selectionPanel->addChild(playerHealthDisplay);
+
+    towerButton1 = wmgr.createWindow("TaharezLook/Button", "tower1Button");
+    towerButton1->setText("Weak Tower\n$50");
+    towerButton1->setSize(CEGUI::USize(CEGUI::UDim(0.9, 0), CEGUI::UDim(0.10, 0)));
+    towerButton1->setPosition(CEGUI::UVector2(CEGUI::UDim(0.05, 0), CEGUI::UDim(0.25, 20)));
     towerButton1Connection = towerButton1->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&TutorialApplication::createTower1, this));
     selectionPanel->addChild(towerButton1);
 
-    towerButton2 = static_cast<CEGUI::PushButton*>(wmgr.createWindow("TaharezLook/ImageButton", "tower2Button"));
-    towerButton2->setSize(CEGUI::USize(CEGUI::UDim(0.80, 0), CEGUI::UDim(0.30, 0)));
-    towerButton2->setPosition(CEGUI::UVector2(CEGUI::UDim(0.1, 0), CEGUI::UDim(0.65, 0)));
-    towerButton2->setProperty("NormalImage", "Buttons/Tower2Normal");
-    towerButton2->setProperty("HoverImage", "Buttons/Tower2Hover");
-    towerButton2->setProperty("PushedImage", "Buttons/Tower2Pressed");
+    towerButton2 = wmgr.createWindow("TaharezLook/Button", "tower2Button");
+    towerButton2->setText("Strong Tower\n$75");
+    towerButton2->setSize(CEGUI::USize(CEGUI::UDim(0.9, 0), CEGUI::UDim(0.10, 0)));
+    towerButton2->setPosition(CEGUI::UVector2(CEGUI::UDim(0.05, 0), CEGUI::UDim(0.35, 30)));
     towerButton2Connection = towerButton2->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&TutorialApplication::createTower2, this));
     selectionPanel->addChild(towerButton2);
 
@@ -106,17 +128,15 @@ void TutorialApplication::createScene(void)
     ////////////////////////////////////////////////////////////////////////////////////////
   
     //Camera
-    mCamera->setPosition(200, 300, 400);
-    mCamera->lookAt(Ogre::Vector3(0, 0, 0));
+    mCamera->setPosition(700, 1000, 450);
+    mCamera->lookAt(Ogre::Vector3(250, 1, 450));
     mCamera->setNearClipDistance(5);
 	Ogre::Viewport* vp = mWindow->getViewport(0);
     vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
   
-   
     //Create Path
     Ogre::SceneNode* pathParentNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("PathParentNode");
     createPath();
-
 
     //Floor
     Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
@@ -124,9 +144,14 @@ void TutorialApplication::createScene(void)
             "ground",
             Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             plane,
-            3000, 3000, 20, 20,
+            3000, 
+            5500, 
+            20, 
+            20,
             true,
-            1, 5, 5,
+            1, 
+            5, 
+            5,
             Ogre::Vector3::UNIT_Z);
 
     Ogre::Entity* groundEntity = mSceneMgr->createEntity("ground");
@@ -137,7 +162,7 @@ void TutorialApplication::createScene(void)
 
 
     //! [lightingsset]
-    mSceneMgr->setAmbientLight(Ogre::ColourValue(0, 0, 0));
+    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
     mSceneMgr->setShadowTechnique(Ogre::ShadowTechnique::SHADOWTYPE_STENCIL_MODULATIVE);
 
 
@@ -146,8 +171,8 @@ void TutorialApplication::createScene(void)
     directionalLight->setType(Ogre::Light::LT_DIRECTIONAL);
 
     //! [directlightcolor]
-    directionalLight->setDiffuseColour(Ogre::ColourValue(0.4, 0, 0));
-    directionalLight->setSpecularColour(Ogre::ColourValue(0.4, 0, 0));
+    directionalLight->setDiffuseColour(Ogre::ColourValue(0.7, 0.7, 0.7));
+    directionalLight->setSpecularColour(Ogre::ColourValue(0.7, 0.7, 0.7));
 
     //! [directlightdir]
     directionalLight->setDirection(Ogre::Vector3::NEGATIVE_UNIT_Z);
@@ -155,21 +180,6 @@ void TutorialApplication::createScene(void)
     Ogre::SceneNode* directionalLightNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
     directionalLightNode->attachObject(directionalLight);
     directionalLightNode->setDirection(Ogre::Vector3(0, -1, 1));
-
-    //! [pointlight]
-    Ogre::Light* pointLight = mSceneMgr->createLight("PointLight");
-    pointLight->setType(Ogre::Light::LT_POINT);
-
-    //! [pointlightcolor]
-    pointLight->setDiffuseColour(0.3, 0.3, 0.3);
-    pointLight->setSpecularColour(0.3, 0.3, 0.3);
-
-    //! [pointlightpos]
-    Ogre::SceneNode* pointLightNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-    pointLightNode->attachObject(pointLight);
-    pointLightNode->setPosition(Ogre::Vector3(0, 150, 250));
-
-	
 }
 //---------------------------------------------------------------------------
 
@@ -202,7 +212,8 @@ void TutorialApplication::createFrameListener() {
 
 bool TutorialApplication::frameRenderingQueued(const Ogre::FrameEvent& fe) {
 
-    playerMoneyDisplay->setText("Current Money:\n\n$ " + std::to_string(playerMoney));
+    playerMoneyDisplay->setText("Current Money:\n$ " + std::to_string(playerMoney));
+    playerHealthDisplay->setText("Health: " + std::to_string(playerHealth));
 
     //Need to capture/update each device
     mKeyboard->capture();
@@ -218,7 +229,6 @@ bool TutorialApplication::frameRenderingQueued(const Ogre::FrameEvent& fe) {
     if (mShutDown)
         return false;
 
-
     //direction vector for enemy movement
     Ogre::Vector3 dirVec = Ogre::Vector3::ZERO;
     dirVec.z += 100;
@@ -230,21 +240,32 @@ bool TutorialApplication::frameRenderingQueued(const Ogre::FrameEvent& fe) {
     }
 
     //move each enemy forward and check health 
-    for (auto it = enemyVector.begin(); it != enemyVector.end(); it++) {
+    for (auto it = enemyVector->begin(); it != enemyVector->end();) {
         //enemy movement
         it->getSceneNode()->translate(
             dirVec * fe.timeSinceLastFrame,
             Ogre::Node::TS_LOCAL);
         //enemy dies if health hits 0
         if (it->getHealth() <= 0) {
+            addMoney(30);
             mSceneMgr->destroyEntity(it->getEntity());
             mSceneMgr->destroySceneNode(it->getSceneNode());
-            enemyVector.erase(it);
+            it = enemyVector->erase(it);
+        }
+        else {
+            ++it;
         }
     }
+
+    if (newTower != nullptr) 
+        newTower->getTrigger().showVisualization();
+
+    //fire towers//
+    for (Tower* tower : towers_) 
+        tower->fire();
+  
     return true;
 }
-
 
 Ogre::SceneNode* TutorialApplication::createPathNode(Ogre::Vector3 pos) {
     pathNodeI += 1;
@@ -260,31 +281,31 @@ void TutorialApplication::createPath() {
     std::vector<Ogre::SceneNode*> path;
     std::vector<Ogre::Degree> pathTurns;
 
-    Ogre::SceneNode* pathNode1 = createPathNode(Ogre::Vector3(0, 100, 400));
+    Ogre::SceneNode* pathNode1 = createPathNode(Ogre::Vector3(0, 40, 400));
     path.push_back(pathNode1);
     pathTurns.push_back(Ogre::Degree(90));
     defaultPathRotate.push_back(false);
     createPathVisualizer(Ogre::Vector3(0,1,200), true);
 
-    Ogre::SceneNode* pathNode2 = createPathNode(Ogre::Vector3(400, 100, 400));
+    Ogre::SceneNode* pathNode2 = createPathNode(Ogre::Vector3(400, 40, 400));
     path.push_back(pathNode2);
     pathTurns.push_back(Ogre::Degree(-90));
     defaultPathRotate.push_back(false);
     createPathVisualizer(Ogre::Vector3(200, 1, 400), false);
 
-    Ogre::SceneNode* pathNode3 = createPathNode(Ogre::Vector3(400, 100, 800));
+    Ogre::SceneNode* pathNode3 = createPathNode(Ogre::Vector3(400, 40, 800));
     path.push_back(pathNode3);
     pathTurns.push_back(Ogre::Degree(-90));
     defaultPathRotate.push_back(false);
     createPathVisualizer(Ogre::Vector3(400, 1, 600), true);
 
-    Ogre::SceneNode* pathNode4 = createPathNode(Ogre::Vector3(0, 100, 800));
+    Ogre::SceneNode* pathNode4 = createPathNode(Ogre::Vector3(0, 40, 800));
     path.push_back(pathNode4);
     pathTurns.push_back(Ogre::Degree(90));
     defaultPathRotate.push_back(false);
     createPathVisualizer(Ogre::Vector3(200, 1, 800), false);
 
-    Ogre::SceneNode* pathNode5 = createPathNode(Ogre::Vector3(0, 100, 1200));
+    Ogre::SceneNode* pathNode5 = createPathNode(Ogre::Vector3(0, 40, 1200));
     path.push_back(pathNode5);
     pathTurns.push_back(Ogre::Degree(-90));
     defaultPathRotate.push_back(false);
@@ -308,37 +329,49 @@ void TutorialApplication::createPathVisualizer(Ogre::Vector3 pos, bool rotation)
 }
 void TutorialApplication::handlePath() {
 
-    for (auto it = enemyVector.begin(); it != enemyVector.end(); it++) {
+    for (auto it = enemyVector->begin(); it != enemyVector->end();) {
 
-        if (it->getSceneNode()->getPosition().distance(createdPath.at(it->getPathNodeIndex())->getPosition()) <= 1 && !it->getCurrentRotateCheck()) {
-            it->getSceneNode()->yaw(createdPathTurns.at(it->getPathNodeIndex()));
-            it->getSceneNode()->setPosition(createdPath.at(it->getPathNodeIndex())->getPosition());
+        Ogre::SceneNode* node = it->getSceneNode();
+        int i = it->getPathNodeIndex();
+        Ogre::Real dist = node->getPosition().distance(createdPath.at(i)->getPosition());
+
+        if ((dist > it->getLastDistance() || dist <= 1) && !it->getCurrentRotateCheck()) {
+            node->yaw(createdPathTurns.at(i));
+            node->setPosition(createdPath.at(i)->getPosition());
             it->toggleCurrentRotateCheck();
+            
             it->incrementNodeIndex();
             if (it->getPathNodeIndex() >= createdPath.size()) {
                 mSceneMgr->destroyEntity(it->getEntity());
-                mSceneMgr->destroySceneNode(it->getSceneNode());
-                enemyVector.erase(it);
+                mSceneMgr->destroySceneNode(node);
+                it = enemyVector->erase(it);
+                subtractHealth(10);
+                addMoney(10);
                 break;
-                //make player take damage (enemy won)
             }
+            else {
+                it->setLastDistance(node->getPosition().distance(createdPath.at(it->getPathNodeIndex())->getPosition()));
+                ++it;
+            }
+        }
+        else {
+            it->setLastDistance(dist);
+            ++it;
         }
     }
 }
 
-
-
 void TutorialApplication::spawnEnemy() {
     std::string enemyName = "Enemy" + std::to_string(enemyCounter);
     enemyCounter++;
-    Ogre::SceneNode* enemyNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(enemyName, Ogre::Vector3(0, 100, 0));
-    enemyNode->setScale(Ogre::Vector3(0.1, 0.1, 0.1));
+    Ogre::SceneNode* enemyNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(enemyName, Ogre::Vector3(0, 40, 0));
+    enemyNode->setScale(Ogre::Vector3(0.4, 0.4, 0.4));
     Ogre::Entity* enemyEntity = mSceneMgr->createEntity("sphere.mesh");
     enemyNode->attachObject(enemyEntity);
     Enemy spawnedEnemy = Enemy(enemyNode, enemyEntity, defaultPathRotate);
-    enemyVector.push_back(spawnedEnemy);
+    spawnedEnemy.setLastDistance(enemyNode->getPosition().distance(createdPath.at(0)->getPosition()));
+    enemyVector->push_back(spawnedEnemy);
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////
 bool TutorialApplication::keyPressed(const OIS::KeyEvent& arg)
@@ -354,7 +387,7 @@ bool TutorialApplication::keyPressed(const OIS::KeyEvent& arg)
     else if (arg.key == OIS::KC_UP) addMoney(50);
     else if (arg.key == OIS::KC_DOWN) subtractMoney(25);
 
-    mCameraMan->injectKeyDown(arg);
+    //mCameraMan->injectKeyDown(arg);
     return true;
 }
 
@@ -362,7 +395,7 @@ bool TutorialApplication::keyReleased(const OIS::KeyEvent& arg)
 {
     //if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp((CEGUI::Key::Scan)arg.key)) return true;
     CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp((CEGUI::Key::Scan)arg.key);
-    mCameraMan->injectKeyUp(arg);
+    //mCameraMan->injectKeyUp(arg);
     return true;
 }
 
@@ -400,7 +433,8 @@ bool TutorialApplication::mouseMoved(const OIS::MouseEvent& arg)
         CEGUI::Vector2f mousePos = CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition();
         arg.state.width = mRoot->getAutoCreatedWindow()->getWidth();
         arg.state.height = mRoot->getAutoCreatedWindow()->getHeight();
-        Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mousePos.d_x / arg.state.width, mousePos.d_y / arg.state.height);
+        //Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mousePos.d_x / arg.state.width, mousePos.d_y / arg.state.height);
+        Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x / arg.state.width, mousePos.d_y / arg.state.height);
         mRaySceneQuery->setRay(mouseRay);
         mRaySceneQuery->setSortByDistance(true);
         Ogre::RaySceneQueryResult& result = mRaySceneQuery->execute();
@@ -421,7 +455,7 @@ bool TutorialApplication::mouseMoved(const OIS::MouseEvent& arg)
 
                 Ogre::Vector3 newpos = mouseRay.getPoint((*rayIterator).distance);
 
-                entity->translate(newpos.x - oldpos.x, entity->getPosition().y, newpos.z - oldpos.z);
+                entity->translate(newpos.x - oldpos.x, 0, newpos.z - oldpos.z);
                 oldpos = newpos;
             }
         }
@@ -433,7 +467,7 @@ bool TutorialApplication::mouseMoved(const OIS::MouseEvent& arg)
 bool TutorialApplication::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
     if (CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(convertButton(id))) {}
-    else mCameraMan->injectMouseDown(arg, id);
+    //else mCameraMan->injectMouseDown(arg, id);
 
     //// Select entity (if applicable)
     //if (id == OIS::MB_Left && selectedObject == "") {
@@ -453,6 +487,8 @@ bool TutorialApplication::mousePressed(const OIS::MouseEvent& arg, OIS::MouseBut
     if (id == OIS::MB_Left && allowPlacing) {
         selectedObject = "";
         allowPlacing = false;
+        towers_.push_back(newTower);
+        newTower = nullptr;
     }
     return true;
 }
@@ -479,7 +515,7 @@ bool TutorialApplication::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseBu
         }
         return true;
     }
-    mCameraMan->injectMouseUp(arg, id);
+    //mCameraMan->injectMouseUp(arg, id);
     return true;
 }
 
@@ -489,44 +525,17 @@ bool TutorialApplication::quit(const CEGUI::EventArgs& e)
     return true;
 }
 
-// For picking the node to be dragged (may not be required)
-Ogre::MovableObject* TutorialApplication::getNode(float mouseScreenX, float mouseScreenY)
-{
-    Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mouseScreenX, mouseScreenY);
-    mRaySceneQuery->setRay(mouseRay);
-    mRaySceneQuery->setSortByDistance(true);
-    Ogre::RaySceneQueryResult& result = mRaySceneQuery->execute();
-
-    Ogre::MovableObject* closestObject = nullptr;
-    Ogre::Real closestDistance = 100000;
-
-    Ogre::RaySceneQueryResult::iterator rayIterator;
-
-    for (rayIterator = result.begin(); rayIterator != result.end(); rayIterator++)
-    {
-        if ((*rayIterator).movable != nullptr && closestDistance > (*rayIterator).distance && (*rayIterator).movable->getMovableType() != "TerrainMipMap")
-        {
-            closestObject = (*rayIterator).movable;
-            closestDistance = (*rayIterator).distance;
-            oldpos = mouseRay.getPoint((*rayIterator).distance);
-            // originalPos = oldpos;
-        }
-    }
-
-    return closestObject;
-}
-
 bool TutorialApplication::createTower1() {
-
     // Handle money
     if (playerMoney < tower1Cost_) return true;
     else subtractMoney(tower1Cost_);
 
-    Ogre::Entity* towerEnt = mSceneMgr->createEntity("ninja.mesh");
+    Ogre::Entity* towerEnt = mSceneMgr->createEntity("cube.mesh");
     towerEnt->setCastShadows(true);
 
     CEGUI::Vector2f mousePos = CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition();
-    Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mousePos.d_x / mRoot->getAutoCreatedWindow()->getWidth(), mousePos.d_y / mRoot->getAutoCreatedWindow()->getHeight());
+    //Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mousePos.d_x / mRoot->getAutoCreatedWindow()->getWidth(), mousePos.d_y / mRoot->getAutoCreatedWindow()->getHeight());
+    Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x / mRoot->getAutoCreatedWindow()->getWidth(), mousePos.d_y / mRoot->getAutoCreatedWindow()->getHeight());
     mRaySceneQuery->setRay(mouseRay);
     mRaySceneQuery->setSortByDistance(true);
     Ogre::RaySceneQueryResult& result = mRaySceneQuery->execute();
@@ -540,6 +549,11 @@ bool TutorialApplication::createTower1() {
     currentObjectNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(selectedObject, pos); // Node of the tower (REQUIRED FOR MOUSE TRACKING)
 
     currentObjectNode->attachObject(towerEnt);
+    currentObjectNode->setScale(0.4, 1, 0.4);
+
+    newTower = new Tower(currentObjectNode, enemyVector, 150, 1.5, 100); //ints: range, damage, reload
+    Ogre::Entity* sphere = mSceneMgr->createEntity("sphere.mesh");
+    newTower->getTrigger().setEntity(sphere);
 
     return true;
 }
@@ -550,11 +564,12 @@ bool TutorialApplication::createTower2() {
     if (playerMoney < tower2Cost_) return true;
     else subtractMoney(tower2Cost_);
 
-    Ogre::Entity* towerEnt = mSceneMgr->createEntity("penguin.mesh");
+    Ogre::Entity* towerEnt = mSceneMgr->createEntity("cube.mesh");
     towerEnt->setCastShadows(true);
 
     CEGUI::Vector2f mousePos = CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition();
-    Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mousePos.d_x / mRoot->getAutoCreatedWindow()->getWidth(), mousePos.d_y / mRoot->getAutoCreatedWindow()->getHeight());
+    //Ogre::Ray mouseRay = mCameraMan->getCamera()->getCameraToViewportRay(mousePos.d_x / mRoot->getAutoCreatedWindow()->getWidth(), mousePos.d_y / mRoot->getAutoCreatedWindow()->getHeight());
+    Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x / mRoot->getAutoCreatedWindow()->getWidth(), mousePos.d_y / mRoot->getAutoCreatedWindow()->getHeight());
     mRaySceneQuery->setRay(mouseRay);
     mRaySceneQuery->setSortByDistance(true);
     Ogre::RaySceneQueryResult& result = mRaySceneQuery->execute();
@@ -568,6 +583,19 @@ bool TutorialApplication::createTower2() {
     currentObjectNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(selectedObject, pos); // Node of the tower (REQUIRED FOR MOUSE TRACKING)
 
     currentObjectNode->attachObject(towerEnt);
+    currentObjectNode->setScale(0.4, 1, 0.4);
+
+    //make strong tower red
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(currentObjectNode->getAttachedObject(0));
+    Ogre::SubEntity* se = entity->getSubEntity(0);
+    Ogre::Material* material = se->getMaterial().get()->clone("RedMaterial").get();
+    material->setDiffuse(1.0f, 0.0f, 0.0f, 0.0f);
+    se->setMaterialName(material->getName());
+    /////////////////////////
+
+    newTower = new Tower(currentObjectNode, enemyVector, 150, 2, 100); //ints: range, damage, reload
+    Ogre::Entity* sphere = mSceneMgr->createEntity("sphere.mesh");
+    newTower->getTrigger().setEntity(sphere);
 
     return true;
 }
